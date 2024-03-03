@@ -1,1 +1,18 @@
-/* В этом файле будут храниться все значения переменных в исходном состоянии, а так же их изменения в зависимости от ширины устройства */
+:root {
+    --font: "Inter", sans-serif;
+    --font-weight: 400;
+    --font-weight-black: 700;
+    --text-shadow:
+    -1px 0 rgba(255, 255, 255, 1),
+    0 1px rgba(255, 255, 255, 1),
+    1px 0 rgba(255, 255, 255, 1),
+    0 -1px rgba(255, 255, 255, 1);
+    --text-shadow-color: rgba(0, 0, 0, 1);
+    --accent-font: "Press Start 2P", system-ui;
+    --background-color: #FFFFFF;
+    --difference-color: #FFFFFF;
+    --accent-color: #000000;
+    --background-gradient: repeating-linear-gradient(to right, #d3d3d3, #d3d3d3 2px, transparent 2px, transparent 4px),
+                            repeating-linear-gradient(#d3d3d3, #d3d3d3 2px, transparent 2px, transparent 4px),
+                            linear-gradient(#e7e7e7 0.01%, #1a1a1a);
+}
