@@ -38,7 +38,7 @@
   font-family: var(--accent-font);
   text-transform: uppercase;
   height: 365px;
-  width: 700px;
+  width: var(--width);
   background-color: var(--background-color);
   margin-top: 102px;
   margin-bottom: 100px;
@@ -54,7 +54,14 @@
 
 .title__html {
   font-size: 65px;
-  line-height: 85px;
+}
+
+.title__html-link {
+  margin-bottom: 20px;
+}
+
+.title__html-link:focus {
+  outline: none;
 }
 
 .theme-menu__item {
@@ -69,13 +76,12 @@
   text-transform: uppercase;
   cursor: pointer;
   opacity: 1;
+  transition: opacity 0.3s ease;
 }
 
 .theme-menu__button:hover {
   opacity: 0.6;
-  transition: 0.3s ease;
 }
-
 
 .theme-menu__button:focus {
   outline: none;
@@ -87,12 +93,12 @@
   width: 0%;
   background-color: var(--accent-color);
   display: block;
-  transition: 0.3s ease;
+  transition: opacity 0.3s ease, width 0.3s ease;
 }
 
 .theme-menu__button:focus-visible {
   opacity: 0.6;
-  transition: 0.3s ease;
+  transition: opacity 0.3s ease, width 0.3s ease;
 }
 
 .theme-menu__button:focus-visible::after {
@@ -103,7 +109,6 @@
   display: block;
 }
 
-
 .theme-menu__button:disabled {
   pointer-events: none;
   opacity: 0.6;
@@ -112,20 +117,10 @@
 .theme-menu__button:disabled::before {
   content: "▶";
   position: absolute;
-  top: 3;
+  top: 3px;
   left: -14px;
   animation: arrow 0.5s ease-in-out infinite alternate;
 }
-
-@keyframes arrow {
-  from {
-    left: -14;
-  }
-  to {
-    left: -18px;
-  }
-} 
-
 
 .theme-menu__list li:not(:last-child) {
  margin-bottom: 14px;
@@ -136,13 +131,13 @@
 }
 
 .card {
-  width: 700px;
+  width: var(--width);
   margin-bottom: 50px;
 }
 
 .card-title {
   font-family: var(--font);
-  font-weight: var(--font-weight-black);
+  font-variation-settings: var(--font-weight-black);
   font-size: 18px;
   line-height: 26px;
   background-color: var(--background-color);
@@ -156,11 +151,37 @@
   position: relative;
 }
 
-/** При добавлении ЛЮБОГО фильтра перестает отображаться .car__img-title >_<
-.comp__img-1 {
+.comp__img {
   filter: grayscale(50%);
 }
-**/
+
+.bird__img {
+  filter: contrast(90%) brightness(80%) hue-rotate(1deg);
+}
+
+.city__img {
+  filter: grayscale(23%);
+}
+
+.fenix__img {
+  filter: saturate(40%);
+}
+
+.girl__img {
+  filter: sepia(70%);
+}
+
+.man__img {
+  filter: contrast(69%);
+}
+
+.dragon__img {
+  filter: blur(0.2px);
+}
+
+.horse__img {
+  filter: contrast(90%);
+}
 
 .car__img-title {
   position: absolute;
@@ -174,24 +195,22 @@
   background-blend-mode: hard-light;
 }
 
-/** Так как text-stroke может быть только внутри, а не снаружи текста, он выглятит весьма плохо в данном случаи(эксперементировал с разной толщиной и обычный box-shadow - лучше)
-@supports((text-stroke: 0.5px var(--background-color)) or (-webkit-text-stroke: 0.5px var(--background-color))) {
+@supports((text-stroke: 1px var(--background-color)) and (-webkit-text-stroke: 1px var(--background-color))) {
   .car__img-title {
-      -webkit-text-stroke: 0.5px var(--background-color);
-      text-stroke: 0.5px var(--background-color);
+      -webkit-text-stroke: 1px var(--background-color);
+      text-stroke: 1px var(--background-color);
       text-shadow: none;
   }
 }
-**/
 
 .car__img {
+  display: block;
   min-height: 696px;
   max-width: 100%;
   object-fit: cover;
   object-position: right;
   border: 2px solid var(--accent-color);
   border-top: none;
-  vertical-align: bottom; /** Я только такое решение нашел в интернете, что бы убрать неизвестный отступ после изображения **/
 }
 
 .card-description {
@@ -200,7 +219,7 @@
   border-top: none;
   padding: 25px 25px 0 25px;
   font-size: 18px;
-  font-weight: var(--font-weight);
+  font-variation-settings: var(--font-weight);
 }
 
 .card-text {
@@ -219,10 +238,9 @@
 
 .card__icon-button {
   background: none;
-  border: none;
+  border: 2px solid transparent;
   height: 38px;
-  margin-right: 12px;
-  transition: 0.3s ease;
+  transition: border 0.3s ease;
   cursor: pointer;
 }
 
@@ -234,19 +252,22 @@
   border: 2px solid var(--accent-color);
 }
 
-.card__like-button {
-  position: relative;
-  display: inline-block;
-  overflow: hidden;
+.animation-button {
   cursor: pointer;
-  background: none;
+  overflow: hidden;
+  position: relative;
+  border: 2px solid var(--accent-color);
   font-family: var(--accent-font);
   font-size: 14px;
-  border: 2px solid var(--accent-color);
+}
+
+.card__like-button {
+  display: inline-block;
+  background: none;
   width: 130px;
 }
 
-.card__like-button::before {
+.animation-button::before {
   content: '';
   position: absolute;
   top: 0;
@@ -258,15 +279,15 @@
   transition: transform 0.5s ease-in-out;
 }
 
-.card__like-button:hover::before {
+.animation-button:hover::before {
   transform: translateX(0);
 }
 
-.card__like-button:focus ,.save-button:focus {
+.animation-button:focus {
   outline: none;
 }
 
-.card__like-button:focus-visible ,.save-button:focus-visible {
+.animation-button:focus-visible {
   box-shadow: 2px 2px 0px 0px var(--accent-color);
   transition: 0.3s ease;
 }
@@ -279,36 +300,14 @@
 
 .save-button {
   display: flex;
-  position: relative;
   align-items: center;
-  overflow: hidden;
-  cursor: pointer;
   gap: 8px;
   background-color: var(--background-color);
-  border: 2px solid var(--accent-color);
-  font-family: var(--accent-font);
-  font-size: 14px;
   padding-left: 19px;
   padding-right: 21px;
   height: 51px;
   margin: 0 auto 103px auto;
 
-}
-
-.save-button::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  transform: translateX(-100%);
-  width: 100%;
-  height: 100%;
-  background-color: var(--accent-color);
-  transition: transform 0.5s ease-in-out;
-}
-
-.save-button:hover::before {
-  transform: translateX(0);
 }
 
 .floppy-icon {
@@ -319,97 +318,12 @@
   color: var(--difference-color);
 }
 
-.main-body ,.core {
+.sparks {
   opacity: 0;
-  fill:var(--accent-color);
-}
-
-.card__icon-button .like-icon .main-body {
-  opacity: 0;
-  transition: opacity 0.3s;
-}
-
-.card__icon-button:hover .like-icon .core {
-  opacity: 1;
-  transition: 0.3s;
-}
-
-.card__icon-button:hover .like-icon .main-body {
-  opacity: 1;
-  transition: 0.3s linear 0.05s;
-}
-
-.card__icon-button:hover .like-icon {
-  transition: 0.3s linear;
-}
-
-.card__icon-button .like-icon .core {
-  transition: 0.3s linear 0.03s;
-}
-
-.card__icon-button:active .like-icon .core {
-  fill: #FF0000;
-}
-
-.card__icon-button:active .like-icon .main-body {
-  fill: #FF0000;
-}
-
-@keyframes scaleHeart {
-  0% {
-    transform: scale(1);
-  }
-  50% {
-    transform: scale(1.1);
-  }
-  100% {
-    transform: scale(1);
-  }
-}
-
-@keyframes sparks {
-  0% {
-    opacity: 0;
-  }
-  50% {
-    opacity: 1;
-  }
-  100% {
-    opacity: 0;
-  }
-}
-
-.like-icon.is-liked .heart {
-  animation: scaleHeart 0.3s ease-in 0.1s both;
-}
-
-.like-icon.is-liked .sparks {
-  animation: sparks 0.3s ease-in 0.3s both;
-}
-
-.like-icon.is-liked .contour {
-  fill: #FF0000;
-  transition: fill 0.3s linear 0.06s;
-}
-
-.like-icon.is-liked .core {
-  opacity: 1;
-  fill: #FF0000;
-  transition: fill 0.3s linear 0.06s;
-}
-
-.like-icon.is-liked .main-body {
-  opacity: 1;
-  fill: #FF0000;
-  transition: opacity 0.3s linear 0.12s;
 }
 
 dialog::backdrop {
   background-color: rgb(0 0 0 / 0.75);
-}
-
-dialog {
-  transition: opacity 0.3s ease-in-out;
 }
 
 #dialog-id {
@@ -441,39 +355,18 @@ dialog {
 
 .dialog-button {
   display: flex;
-  position: relative;
   align-items: center;
-  overflow: hidden;
-  cursor: pointer;
   background-color: var(--background-color);
-  border: 2px solid var(--accent-color);
-  font-family: var(--accent-font);
-  font-size: 14px;
   padding-left: 132px;
   padding-right: 132px;
   height: 38px;
   margin: 0 auto 0 auto;
 }
 
-.dialog-button::before {
-  content: '';
-  position: absolute;
-  top: 0;
-  left: 0;
-  transform: translateX(-100%);
-  width: 100%;
-  height: 100%;
-  background-color: var(--accent-color);
-  transition: transform 0.5s ease-in-out;
-}
-
-.dialog-button:hover::before {
-  transform: translateX(0);
-}
-
 @media (max-width: 700px) {
-  .header {
-    width: 375px;
+
+  :root {
+    --width: 100%;
   }
 
   .title {
@@ -486,13 +379,18 @@ dialog {
     line-height: 69px;
   }
 
-  .card {
-    width: 375px;
-  }
-
   .car__img {
     min-height: 375px;
     max-width: 100%;
     object-position: center;
+  }
+
+  .save-button {
+    flex-direction: column;
+    justify-content: center;
+    padding-left: 20px;
+    padding-right: 20px;
+    height: 84px;
+    margin: 0 auto 100px auto;
   }
 }
