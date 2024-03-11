@@ -11,6 +11,7 @@
     --accent-font: "Press Start 2P", system-ui;
     --background-color: #FFFFFF;
     --difference-color: #FFFFFF;
+    --width: clamp(23.438rem, 16.285rem + 30.516vw, 43.75rem);
     --accent-color: #000000;
     --background-gradient: repeating-linear-gradient(to right, #d3d3d3, #d3d3d3 2px, transparent 2px, transparent 4px),
                             repeating-linear-gradient(#d3d3d3, #d3d3d3 2px, transparent 2px, transparent 4px),
