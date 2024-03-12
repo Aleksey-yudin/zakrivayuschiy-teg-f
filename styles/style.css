@@ -17,7 +17,7 @@
 .page {
   min-inline-size: 320px;
   min-block-size: 100dvb;
-  font-variation-settings: var(--font-weight);;
+  font-variation-settings: var(--font-weight);
   font-family: var(--font);
   color: var(--accent-color);
   background-image: var(--background-gradient);
@@ -205,8 +205,8 @@
 
 .car__img {
   display: block;
-  min-height: 696px;
   max-width: 100%;
+  aspect-ratio: 1 / 1;
   object-fit: cover;
   object-position: right;
   border: 2px solid var(--accent-color);
